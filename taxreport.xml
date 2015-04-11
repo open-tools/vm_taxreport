@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension version="2.5" type="plugin" group="vmextended" method="upgrade">
+    <name>VMEXT_TAX_REPORT</name>
+    <creationDate>2015-03-21</creationDate>
+    <author>Open Tools</author>
+    <authorEmail>office@open-tools.net</authorEmail>
+    <authorUrl>http://www.open-tools.net/</authorUrl>
+    <copyright>Copyright (C) 2015 Reinhold Kainhofer. All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPLv3</license>
+    <version>0.1</version>
+    <releaseDate>2015-04-01</releaseDate>
+    <releaseType>Initial Release</releaseType>
+    <downloadUrl>http://www.open-tools.net</downloadUrl>
+
+    <description>VMEXT_TAXREPORT_DESC</description>
+
+    <files>
+        <filename plugin="taxreport">taxreport.php</filename>
+        <filename>taxreport.script.php</filename>
+        <filename>index.html</filename>
+        <folder>language</folder>
+        <folder>controllers</folder>
+        <folder>models</folder>
+        <folder>views</folder>
+    </files>
+    <scriptfile>taxreport.script.php</scriptfile>
+    <languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.plg_vmextended_taxreport.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_vmextended_taxreport.sys.ini</language>
+    </languages>
+    
+<!-- 	VM 3.x: Fields -->
+    <vmconfig>
+    </vmconfig>
+
+
+   <!-- VM 2.0 support (params rather than fields): -->
+    <params addpath="/plugins/vmextended/taxreport/elements" />
+    <params addpath="/administrator/components/com_virtuemart/elements" >
+        <param type="vmjpluginwarning" />
+    </params>
+
+</extension>
