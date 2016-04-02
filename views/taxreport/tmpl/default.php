@@ -48,20 +48,37 @@ $myCurrencyDisplay = CurrencyDisplay::getInstance();
             <tbody>
                 <?php
         $i = 0;
+        $nr_taxes = 0;
+        $nr_orders = 0;
+        $sum_revenue = 0.0;
+        $sum_tax = 0.0;
+        $tax_rate = 0;
         foreach ($this->report as $r) { ?>
                 <tr class="row<?php echo $i;?>">
                     <td align="center"><?php echo $r['country']; ?></td>
                     <td align="left"><?php echo $r['taxrule']; ?></td>
-                    <td align="center"><?php echo round($r['taxrate'], 4) . " %"; ?></td>
+                    <td align="center"><?php echo round($r['taxrate'], 2) . " %"; ?></td>
                     <td align="center"><?php echo $r['ordercount']; ?></td>
                     <td align="right"><?php echo $myCurrencyDisplay->priceDisplay($r['sum_revenue_net']); ?></td>
                     <td align="right"><?php echo $myCurrencyDisplay->priceDisplay($r['sum_order_tax']); ?></td>
                 </tr>
                 <?php 
+                ++$nr_taxes;
+                $nr_orders += $r['ordercount'];
+                $sum_revenue += $r['sum_revenue_net'];
+                $sum_tax += $r['sum_order_tax'];
                 $i = 1-$i; 
 	    } ?>
             </tbody>
             <tfoot>
+                <tr>
+                    <th align="center"></th>
+                    <th align="left"><?php echo vmText::_('VMEXT_TAXREPORT_SUMMARY'); ?></th>
+                    <th align="center"><?php echo round($sum_tax/$sum_revenue*100, 4) . " %"; ?></th>
+                    <th align="center"><?php echo $nr_orders; ?></th>
+                    <th align="right"><?php echo $myCurrencyDisplay->priceDisplay($sum_revenue); ?></th>
+                    <th align="right"><?php echo $myCurrencyDisplay->priceDisplay($sum_tax); ?></th>
+                </tr>
                 <tr>
                     <td colspan="10">
                         <?php if ($this->pagination) echo $this->pagination->getListFooter(); ?>
