@@ -9,7 +9,7 @@ class VirtuemartControllerTaxReport extends VmController {
 	function __construct(){
 		parent::__construct();
 		// Add the proper view pathes...
-		$this->addViewPath(JPATH_PLUGINS.DS . 'vmextended' . DS . 'taxreport' . DS . 'views');
+		$this->addViewPath(JPATH_PLUGINS.DS . 'vmextended' . DS . 'taxreport' . DS . 'views' . DS . 'taxreport');
 	}
 
 }

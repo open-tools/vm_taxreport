@@ -7,9 +7,9 @@
     <authorUrl>http://www.open-tools.net/</authorUrl>
     <copyright>Copyright (C) 2015 Reinhold Kainhofer. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPLv3</license>
-    <version>0.1</version>
-    <releaseDate>2015-04-01</releaseDate>
-    <releaseType>Initial Release</releaseType>
+    <version>0.2</version>
+    <releaseDate>2016-04-02</releaseDate>
+    <releaseType>Update</releaseType>
     <downloadUrl>http://www.open-tools.net</downloadUrl>
 
     <description>VMEXT_TAXREPORT_DESC</description>
@@ -39,5 +39,9 @@
     <params addpath="/administrator/components/com_virtuemart/elements" >
         <param type="vmjpluginwarning" />
     </params>
+	
+	<updateservers>
+		<server type="extension" name="VM Tax Report Updates"><![CDATA[http://open-tools.net/UpdateServer/index.php?package=Joomla&amp;extension=TaxReport]]></server>
+	</updateservers>
 
 </extension>

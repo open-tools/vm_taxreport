@@ -13,7 +13,11 @@ if(!defined('VM_VERSION') or VM_VERSION < 3){
 class VirtuemartViewTaxReport extends VmViewAdmin {
 	function __construct(){
 		parent::__construct();
-		$this->_addPath('template', JPATH_PLUGINS.DS . 'vmextended' . DS . 'taxreport' . DS . 'views' . DS . $this->getName() . DS  . 'tmpl');
+		$nm = "taxreport";
+		$this->addLayoutPath($nm, JPATH_PLUGINS.DS . 'vmextended' . DS . 'taxreport' . DS . 'views' . DS . $nm . DS  . 'tmpl');
+// 		$this->_addPath('template', JPATH_PLUGINS.DS . 'vmextended' . DS . 'taxreport' . DS . 'views' . DS . $this->getName() . DS  . 'tmpl');
+// VmConfig::$echoDebug = 1;
+// vmdebug("<pre>VirtuemartViewTaxReport, pathes: ".print_r(self::$_paths,1)."</pre>");
 	}
 
 	function display($tpl = null){
@@ -24,7 +28,9 @@ class VirtuemartViewTaxReport extends VmViewAdmin {
 		vRequest::setvar('task','');
 		$this->SetViewTitle('TAXREPORT');
 
-		$model		= VmModel::getModel();
+		$model		= VmModel::getModel('taxreport');
+// VmConfig::$echoDebug = 1;
+// vmdebug("<pre>display, model=".print_r($model,1)."</pre>");
 		$this->addStandardDefaultViewLists($model);
 		$myCurrencyDisplay = CurrencyDisplay::getInstance();
 		

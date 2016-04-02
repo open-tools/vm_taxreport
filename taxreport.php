@@ -9,16 +9,24 @@ class plgVmExtendedTaxReport extends vmExtendedPlugin {
 	public function __construct (&$subject, $config=array()) {
 		parent::__construct($subject, $config);
 		$this->_path = JPATH_PLUGINS.DS.'vmextended'.DS.$this->getName();
-		JPlugin::loadLanguage('plg_vmextended_'.$this->getName());
+		$this->loadLanguage('plg_vmextended_'.$this->getName());
 	}
 
 	public function onVmAdminController ($controller) {
 		if ($controller == 'taxreport'/*$this->getName()*/) {
-			VmModel::addIncludePath($this->_path . DS . 'models');
-			// TODO: Make sure the model exists. We probably should find a better way to load this automatically! 
-			//       Currently, some path config seems missing, so the model is not found by default.
-			require_once($this->_path.DS.'models'.DS.'taxreport.php');
+			VmModel::addIncludePath($this->_path . DS . 'models', 'VirtueMartModel');
 			require_once($this->_path.DS.'controllers'.DS.'taxreport.php');
+			
+			// In later VM versions, we can/should execute the controller here rather than letting virtuemart.php do the job:
+			$_class = 'VirtueMartController'.ucfirst($controller);
+			if(!class_exists($_class)){
+				vmError('Serious Error could not find controller '.$_class,'Serious error, unable to find class');
+				$app = vFactory::getApplication();
+				$app->redirect('index.php?option=com_virtuemart');
+			}
+			$controller = new $_class();
+			$controller->execute(vRequest::getCmd('task', $controller));
+			$controller->redirect();
 			return true;
 		}
 	}
