@@ -19,7 +19,7 @@ class plgVmExtendedTaxReport extends vmExtendedPlugin {
 			//       Currently, some path config seems missing, so the model is not found by default.
 			require_once($this->_path.DS.'models'.DS.'taxreport.php');
 			require_once($this->_path.DS.'controllers'.DS.'taxreport.php');
-			return true;
+			return false;
 		}
 	}
 
