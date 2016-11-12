@@ -74,7 +74,7 @@ $myCurrencyDisplay = CurrencyDisplay::getInstance();
                 <tr>
                     <th align="center"></th>
                     <th align="left"><?php echo vmText::_('VMEXT_TAXREPORT_SUMMARY'); ?></th>
-                    <th align="center"><?php echo round($sum_tax/$sum_revenue*100, 4) . " %"; ?></th>
+                    <th align="center"><?php if ($sum_revenue > 0) echo round($sum_tax/$sum_revenue*100, 4) . " %"; ?></th>
                     <th align="center"><?php echo $nr_orders; ?></th>
                     <th align="right"><?php echo $myCurrencyDisplay->priceDisplay($sum_revenue); ?></th>
                     <th align="right"><?php echo $myCurrencyDisplay->priceDisplay($sum_tax); ?></th>
